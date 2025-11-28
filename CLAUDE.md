@@ -208,3 +208,10 @@ Wait for consent; never auto-create ADRs. Group related decisions (stacks, authe
 
 ## Code Standards
 See `.specify/memory/constitution.md` for code quality, testing, performance, security, and architecture principles.
+
+## Active Technologies
+- Markdown (Claude Code Agent specification) + Node.js 20+ (for Docusaurus runtime) (001-content-architect-subagent)
+- Filesystem-based (creates .md files, .json configs, updates .ts files) (001-content-architect-subagent)
+
+## Recent Changes
+- 001-content-architect-subagent: Added Markdown (Claude Code Agent specification) + Node.js 20+ (for Docusaurus runtime)
