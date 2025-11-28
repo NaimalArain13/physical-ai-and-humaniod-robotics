@@ -1,0 +1,140 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/NaimalArain13/add-hackathon-2k25/schemas/category-config.json",
+  "title": "Docusaurus Category Configuration",
+  "description": "Schema for _category_.json files in Docusaurus docs directories",
+  "type": "object",
+  "required": ["label", "position"],
+  "properties": {
+    "label": {
+      "type": "string",
+      "description": "Display name for the category in the sidebar",
+      "minLength": 1,
+      "maxLength": 100,
+      "examples": [
+        "Chapter 1: Foundations",
+        "Chapter 2: ROS 2 Fundamentals",
+        "Chapter 3: Simulation"
+      ]
+    },
+    "position": {
+      "type": "integer",
+      "description": "Numeric position in sidebar (1-based, determines order)",
+      "minimum": 1,
+      "maximum": 999,
+      "examples": [1, 2, 3]
+    },
+    "collapsed": {
+      "type": "boolean",
+      "description": "Whether the category starts collapsed in the sidebar",
+      "default": false,
+      "examples": [false, true]
+    },
+    "collapsible": {
+      "type": "boolean",
+      "description": "Whether the category can be collapsed/expanded",
+      "default": true,
+      "examples": [true, false]
+    },
+    "className": {
+      "type": "string",
+      "description": "CSS class name for custom styling",
+      "pattern": "^[a-zA-Z_][a-zA-Z0-9_-]*$",
+      "examples": ["chapter-category", "highlight-category"]
+    },
+    "link": {
+      "type": "object",
+      "description": "Configuration for category landing page",
+      "oneOf": [
+        {
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "generated-index",
+              "description": "Auto-generate an index page listing all items"
+            },
+            "title": {
+              "type": "string",
+              "description": "Custom title for the generated index page"
+            },
+            "description": {
+              "type": "string",
+              "description": "Description text for the generated index page",
+              "examples": [
+                "Introduction to Physical AI and embodied intelligence principles"
+              ]
+            },
+            "slug": {
+              "type": "string",
+              "description": "Custom URL slug for the index page",
+              "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+            },
+            "keywords": {
+              "type": "array",
+              "description": "Keywords for SEO",
+              "items": {
+                "type": "string"
+              },
+              "examples": [["ros2", "robotics", "physical-ai"]]
+            },
+            "image": {
+              "type": "string",
+              "description": "Path to image for the index page"
+            }
+          },
+          "required": ["type"]
+        },
+        {
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "doc",
+              "description": "Link to a specific document as the category page"
+            },
+            "id": {
+              "type": "string",
+              "description": "Document ID to link to",
+              "examples": ["chapter-01-foundations/intro"]
+            }
+          },
+          "required": ["type", "id"]
+        }
+      ]
+    },
+    "customProps": {
+      "type": "object",
+      "description": "Custom properties for plugin extensions",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false,
+  "examples": [
+    {
+      "label": "Chapter 1: Foundations",
+      "position": 1,
+      "collapsed": false,
+      "link": {
+        "type": "generated-index",
+        "description": "Introduction to Physical AI and embodied intelligence"
+      }
+    },
+    {
+      "label": "Chapter 2: ROS 2 Fundamentals",
+      "position": 2,
+      "collapsed": false,
+      "link": {
+        "type": "generated-index",
+        "description": "Master ROS 2 architecture and core concepts"
+      }
+    },
+    {
+      "label": "Chapter 3: Simulation",
+      "position": 3,
+      "collapsed": false,
+      "link": {
+        "type": "generated-index",
+        "description": "Simulate robots with Gazebo and Unity"
+      }
+    }
+  ]
+}
